@@ -45,10 +45,12 @@ public class AppsListActivity extends AppCompatActivity {
        List<ResolveInfo> availableActivities = manager.queryIntentActivities(i,0);
        for(ResolveInfo ri: availableActivities){
            Item app = new Item();
-           app.label = ri.activityInfo.packageName;
-           app.name = ri.loadLabel(manager);
-           app.icon = ri.loadIcon(manager);
-           apps.add(app);
+           if(ri.loadLabel(manager).toString().equalsIgnoreCase("Phone") || ri.loadLabel(manager).toString().equalsIgnoreCase("Maps")) {
+               app.label = ri.activityInfo.packageName;
+               app.name = ri.loadLabel(manager);
+               app.icon = ri.loadIcon(manager);
+               apps.add(app);
+           }
        }
 
     }
